@@ -182,7 +182,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
+  /* font-family: inherit; 1 */
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
@@ -468,7 +468,7 @@ table {
   border-collapse: collapse;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
@@ -476,7 +476,7 @@ h5,
 h6 {
   font-size: inherit;
   font-weight: inherit;
-}
+} */
 
 /**
  * Reset links to optimize for opt-in styling instead of
@@ -559,7 +559,7 @@ object {
 img,
 video {
   max-width: 100%;
-  height: auto;
+  /* height: auto; */
 }
 
 /**

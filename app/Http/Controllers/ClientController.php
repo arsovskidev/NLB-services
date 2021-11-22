@@ -14,7 +14,6 @@ class ClientController extends Controller
      */
     public function index()
     {
-        dd(env('BANK_NAME', false));
     }
 
     /**
