@@ -23,6 +23,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/test', [ClientController::class, 'index']);
+Route::get('/clients',                  [ClientController::class, 'index'])->name('clients.index');
+Route::get('/clients/create',           [ClientController::class, 'create'])->name('clients.create');
+Route::post('/clients',                 [ClientController::class, 'store'])->name('clients.store');
+// Route::get('/clients/{client}',         [ClientController::class, 'show'])->name('clients.show');
+Route::get('/clients/{client}',         [ClientController::class, 'edit'])->name('clients.edit');
+Route::delete('/clients/{client}',      [ClientController::class, 'destroy'])->name('clients.delete');
+
 
 require __DIR__ . '/auth.php';
