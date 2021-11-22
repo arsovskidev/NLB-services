@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\MainController;
 use App\Models\Client;
 use Illuminate\Support\Facades\Route;
 
@@ -16,13 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [MainController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::get('/test', [ClientController::class, 'index']);
+Route::get('/test',     [ClientController::class, 'index']);
 
 require __DIR__ . '/auth.php';
