@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -14,6 +15,9 @@ class ClientController extends Controller
      */
     public function index()
     {
+        $clients = Client::get();
+
+        return view('dashboard', compact('clients'));
     }
 
     /**
@@ -23,7 +27,6 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -34,7 +37,16 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = new Client();
+
+        $client->name = $request->name;
+        $client->surname = $request->surname;
+        $client->email = $request->email;
+        $client->password = Hash::make($request->password);
+
+        if ($client->save()) {
+            return redirect()->route('clients.index')->with('success', 'Client created!');
+        }
     }
 
     /**
@@ -56,7 +68,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('edit', compact('client'));
     }
 
     /**
@@ -79,6 +91,8 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+
+        return redirect()->route('clients.index')->with('error', 'Client deleted.');
     }
 }

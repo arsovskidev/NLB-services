@@ -90,6 +90,7 @@
                             {{ __('Submit') }}
                         </x-button>
                     </form>
+<<<<<<< HEAD
                     @if (Session::has("success"))
                       <div class="bg-green-200 border-t-4 border-green-500 rounded-b text-green-900 px-4 py-3 shadow-md w-full lg:w-1/4 my-2" role="alert">
                         <div class="flex">
@@ -107,6 +108,29 @@
                           <span class="block sm:inline">Something went wrong</span>
                         </div>
                       </div>
+=======
+                    @if (Session::has('success'))
+                    <div class="bg-green-300 border-t-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md w-1/2 my-2" role="alert">
+                      <div class="flex">
+                        <div class="py-1">
+                          <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                        <div>
+                          <p class="font-bold"> {{Session::get('success')}}</p>  
+                        </div>
+                      </div>
+                    </div>
+                    @endif
+                    @if (Session::has('error'))
+                    <div class="bg-red-300 border-t-4 border-red-500 rounded-b text-teal-900 px-4 py-3 shadow-md w-1/2 my-2" role="alert">
+                      <div class="flex">
+                        <div class="py-1">
+                          <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                        <div>
+                          <p class="font-bold"> {{Session::get('error')}}</p>  
+                        </div>
+                      </div>
+                    </div>
+>>>>>>> crud
                     @endif
                 </div>
             </section>
@@ -142,6 +166,7 @@
                                         </div>
                                       </div>
                                     </div>
+<<<<<<< HEAD
                                   </td>
                                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="#" class="text-indigo-500 hover:text-indigo-900">Edit</a>
@@ -149,6 +174,44 @@
                                     <a href="#" class="text-red-500 hover:text-red-900">Delete</a>
                                   </td>
                                 </tr>
+=======
+                                  </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                  <br>
+                                  <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                                </td>
+                              </tr>
+                              @foreach ($clients as $client)
+                              <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="flex items-center">
+                                    <div>
+                                      <div class="text-sm font-medium text-gray-900">
+                                        {{ $client->name }} {{ $client->surname }}
+                                      </div>
+                                      <div class="text-sm text-gray-500">
+                                        {{ $client->email }}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                  {{-- <a href="{{ route('clients.edit', $client->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a> --}}
+                                  <form method="GET" action="{{ route('clients.edit', $client->id) }}">
+                                    @csrf
+                                    <button type="submit" href="" class="text-indigo-600 hover:text-indigo-900">Edit</button>
+                                  </form>
+                                  <br>
+                                  <form method="POST" action="{{ route('clients.delete', $client->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" href="" class="text-red-600 hover:text-red-900">Delete</button>
+                                  </form>
+                                </td>
+                              </tr>
+>>>>>>> crud
                               @endforeach
                             </tbody>
                           </table>
