@@ -13,7 +13,7 @@ class MainController extends Controller
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
-        return redirect()->route('login');
+        return view('auth.login');
     }
     public function dashboard()
     {
