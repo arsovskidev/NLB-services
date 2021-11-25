@@ -16,11 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('dashboard');
-});
 
-Route::get('/dashboard', [MainController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/',                         [MainController::class, 'index'])->name('home');
+
+Route::get('/dashboard',                [MainController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 
 Route::get('/clients',                  [ClientController::class, 'index'])->name('clients.index');
 Route::get('/clients/create',           [ClientController::class, 'create'])->name('clients.create');
