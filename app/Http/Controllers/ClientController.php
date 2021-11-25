@@ -80,7 +80,12 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $client->name = $request->name;
+        $client->surname = $request->surname;
+
+        if($client->save()) {
+            return redirect()->route('dashboard')->with('success', 'Client profile successfully updated');
+        }
     }
 
     /**

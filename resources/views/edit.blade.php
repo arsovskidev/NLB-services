@@ -43,34 +43,30 @@
         </div>
         <div>
             <section class="content-section" id="admin-panel">
-                <h1 class="fw-normal">Admin Panel</h1>
+                <h1 class="fw-normal">Edit Client Info</h1>
                 <h4 class="fw-light">
-                    <div>Version: <span class="text-purple">1.0.0</span></div>
+                    <div>Client: <span class="text-purple">{{ $client->email }}</span></div>
                 </h4>
                 <hr class="my-6">
-                <div class="">
-                    <h2>Register a new client</h2>
-                    <form action="" autocomplete="off" class="w-full">
-
-                        <x-input id="name" class="block my-3 w-full lg:w-1/4" type="text" name="name" :value="{{ $client->name }}"  placeholder="Name"/>
-
-                        <x-input id="surname" class="block my-3 w-full lg:w-1/4" type="text" name="surname" :value="{{ $client->surname }}" placeholder="Surname"/>
-
-                        <x-input id="email" class="block my-3 w-full lg:w-1/4" type="text" name="email" :value="{{ $client->email }}" placeholder="Email"/>
-
-                        <x-button class="mt-4 bg-indigo-500 hover:bg-indigo-700">
-                            {{ __('Submit') }}
-                        </x-button>
-                    </form>
-                    <div class="bg-green-300 border-t-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md w-1/2 my-2" role="alert">
-                      <div class="flex">
-                        <div class="py-1">
-                          <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
-                        <div>
-                          <p class="font-bold">The client has been registered successfully</p>
-                        </div>
-                      </div>
-                    </div>
+                <div>
+                    <form action="{{ route('clients.update', $client->id) }}" method="POST" autocomplete="off" class="w-full">
+                        @csrf
+                          <x-input id="name" class="block my-3 w-full lg:w-1/4 placeholder-gray-400 border-indigo-300" type="text" name="name" value="{{ $client->name }}"  placeholder="Name"/>
+                            @error('name')
+                              <span class="flex items-center font-medium tracking-wide text-red-500 text-xs">
+                                {{ $message }}
+                              </span>
+                            @enderror
+                          <x-input id="surname" class="block my-3 w-full lg:w-1/4 placeholder-gray-400 border-indigo-300" type="text" name="surname" value="{{ $client->surname }}" placeholder="Surname"/>
+                            @error('surname')
+                              <span class="flex items-center font-medium tracking-wide text-red-500 text-xs">
+                                {{ $message }}
+                              </span>
+                            @enderror
+                          <x-button class="mt-4 bg-indigo-500 hover:bg-indigo-700">
+                              {{ __('Submit') }}
+                          </x-button>
+                      </form>
                 </div>
             </section>
         </div>

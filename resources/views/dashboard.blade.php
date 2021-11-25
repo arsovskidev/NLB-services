@@ -132,28 +132,28 @@
                               @foreach ($clients as $client)
                                 <tr>
                                   <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                      <div>
-                                        <div class="text-sm font-medium text-gray-900">
-                                          {{ $client->name }} {{ $client->surname }}
-                                        </div>
-                                        <div class="text-sm text-gray-500">
-                                          {{ $client->email }}
+                                      <div class="flex items-center">
+                                        <div>
+                                          <div class="text-sm font-medium text-gray-900">
+                                            {{ $client->name }} {{ $client->surname }}
+                                          </div>
+                                          <div class="text-sm text-gray-500">
+                                            {{ $client->email }}
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                  <br>
-                                  <form method="POST" action="{{ route('clients.delete', $client->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
-                                  </form>
-                                </td>
-                              </tr>
+                                  </td>
+                                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="{{ route('clients.edit', $client->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    <br>
+                                    <form method="POST" action="{{ route('clients.delete', $client->id) }}">
+                                      @csrf
+                                      @method('DELETE')
+                                      <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                                    </form>
+                                  </td>
+                                </tr>
                               @endforeach
                             </tbody>
                           </table>
