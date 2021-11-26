@@ -58,7 +58,7 @@
                     <div>Version: <span class="text-purple">1.0.0</span></div>
                 </h4>
                 <hr class="my-6">
-                <div class="">
+                <div>
                     <h2>Register a new client</h2>
                     <form action="{{ route('clients.store') }}" method="POST" autocomplete="off" class="w-full">
                       @csrf
@@ -94,7 +94,21 @@
                       <div class="bg-green-200 border-t-4 border-green-500 rounded-b text-green-900 px-4 py-3 shadow-md w-full lg:w-1/4 my-2" role="alert">
                         <div class="flex">
                           <div class="py-1">
-                            <svg class="animate-ping fill-current h-6 w-6 mr-4 text-green-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                            <svg
+                              class="animate-ping h-6 w-6 text-green-600"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 13l4 4L19 7"
+                              ></path>
+                            </svg>
+                          </div>
                           <div class="my-auto">
                             <p class="font-bold text-green-700">{{ Session::get("success") }}</p>
                           </div>

@@ -10,6 +10,12 @@ class Token extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'client_id',
+        'token',
+        'expires_at',
+    ];
+
     public function client()
     {
         return $this->belongsTo(Client::class);

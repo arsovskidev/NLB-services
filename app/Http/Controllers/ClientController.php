@@ -45,7 +45,7 @@ class ClientController extends Controller
         $client->password = Hash::make($request->password);
 
         if ($client->save()) {
-            return redirect()->route('clients.index')->with('success', 'Client created!');
+            return redirect()->route('clients.index')->with('success', 'Client created');
         }
     }
 
@@ -98,6 +98,6 @@ class ClientController extends Controller
     {
         $client->delete();
 
-        return redirect()->route('clients.index')->with('success', 'Client deleted.');
+        return redirect()->route('clients.index')->with('success', 'Client deleted');
     }
 }

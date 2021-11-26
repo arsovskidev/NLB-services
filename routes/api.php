@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/info',                             [ClientApiController::class, 'index']);
+
+Route::group(['prefix' => 'client', 'middleware' => 'check.token'], function () {
+    Route::post('/info',                       [ClientApiController::class, 'info']);
+    Route::post('/login',                      [ClientApiController::class, 'login']);
 });
