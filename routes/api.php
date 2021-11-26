@@ -19,7 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/info',                             [ClientApiController::class, 'index']);
+Route::get('/search/{name}',                   [ClientApiController::class, 'search']);
+
+Route::get('/info',                            [ClientApiController::class, 'index']);
 
 Route::group(['prefix' => 'client', 'middleware' => 'check.token'], function () {
     Route::post('/info',                       [ClientApiController::class, 'info']);

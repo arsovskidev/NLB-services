@@ -86,6 +86,12 @@ class ClientApiController extends Controller
         } return response()->json(["status" => "error", "message" => "Invalid credentials"], 401);
     }
 
+    public function search($name) 
+    {
+        $client = Client::where("surname", "like", '%'.$name.'%')->get('id');
+        return $client;
+    }
+
     /**
      * Display the specified resource.
      *

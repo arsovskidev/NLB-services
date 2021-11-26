@@ -91,6 +91,7 @@
                         </x-button>
                     </form>
                     @if (Session::has("success"))
+                    <hr class="my-6">
                       <div class="bg-green-200 border-t-4 border-green-500 rounded-b text-green-900 px-4 py-3 shadow-md w-full lg:w-1/4 my-2" role="alert">
                         <div class="flex">
                           <div class="py-1">
@@ -123,6 +124,40 @@
                       </div>
                     @endif
                 </div>
+                <hr class="my-6">
+                <div>
+                  <h2>Add an account</h2>
+                  <form action="{{ route('accounts.store') }}" method="POST" autocomplete="off" class="w-full">
+                    @csrf
+                      <x-input id="client_id" class="block my-3 w-full lg:w-1/4 placeholder-gray-400 border-indigo-300" type="text" name="client_id" :value="old('Client_id')"  placeholder="Client id"/>
+                        @error('client_id')
+                          <span class="flex items-center font-medium tracking-wide text-red-500 text-xs">
+                            {{ $message }}
+                          </span>
+                        @enderror
+                      <x-input id="account_number" class="block my-3 w-full lg:w-1/4 placeholder-gray-400 border-indigo-300" type="text" name="account_number" :value="old('Account_number')" placeholder="Account number"/>
+                        @error('account_number')
+                          <span class="flex items-center font-medium tracking-wide text-red-500 text-xs">
+                            {{ $message }}
+                          </span>
+                        @enderror
+                      <x-input id="credit_card_number" class="block my-3 w-full lg:w-1/4 placeholder-gray-400 border-indigo-300" type="text" name="credit_card_number" :value="old('Credit_card_number')" placeholder="Credit card number"/>
+                        @error('credit_card_number')
+                          <span class="flex items-center font-medium tracking-wide text-red-500 text-xs">
+                            {{ $message }}
+                          </span>
+                        @enderror
+                      <x-input id="balance" class="block mt-3 mb-2 w-full lg:w-1/4 placeholder-gray-400 border-indigo-300" type="text" name="balance" :value="old('Balance')" placeholder="Balance"/>
+                        @error('balance')
+                          <span class="flex items-center font-medium tracking-wide text-red-500 text-xs">
+                            {{ $message }}
+                          </span>
+                        @enderror
+                      <x-button class="mt-4 bg-indigo-500 hover:bg-indigo-700">
+                          {{ __('Submit') }}
+                      </x-button>
+                  </form>
+              </div>
             </section>
             <section class="content-section" id="Users">
                 <h1 class="fw-normal">Users</h1>
@@ -134,6 +169,7 @@
                           <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                               <tr>
+                                <th scope="col" class="text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                   Info
                                 </th>
@@ -145,6 +181,11 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                               @foreach ($clients as $client)
                                 <tr>
+                                  <td class="px-1 whitespace-nowrap">
+                                      <div class="text-center text-sm font-medium text-gray-900">
+                                        {{ $client->id }}
+                                      </div>
+                                  </td>
                                   <td class="px-6 py-4 whitespace-nowrap">
                                       <div class="flex items-center">
                                         <div>

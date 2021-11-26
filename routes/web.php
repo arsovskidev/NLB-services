@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MainController;
 use App\Models\Client;
@@ -18,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',                         [MainController::class, 'index'])->name('home');
-
 Route::get('/dashboard',                [MainController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 
 Route::get('/clients',                  [ClientController::class, 'index'])->name('clients.index');
@@ -28,5 +28,6 @@ Route::get('/clients/{client}',         [ClientController::class, 'edit'])->name
 Route::post('/clients/{client}',        [ClientController::class, 'update'])->name('clients.update');
 Route::delete('/clients/{client}',      [ClientController::class, 'destroy'])->name('clients.delete');
 
+Route::post('/account',                 [AccountController::class, 'store'])->name('accounts.store');
 
 require __DIR__ . '/auth.php';

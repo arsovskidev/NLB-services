@@ -35,7 +35,15 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $account = new Account();
+        $account->client_id = $request->client_id;
+        $account->account_number = $request->account_number;
+        $account->credit_card_number = $request->credit_card_number;
+        $account->balance_eur = $request->balance;
+
+        if($account->save()) {
+            return redirect()->route('dashboard')->with('success', 'Account successfully created');
+        } return redirect()->route('dashboard')->with('error', 'Whoops an error occured');
     }
 
     /**
