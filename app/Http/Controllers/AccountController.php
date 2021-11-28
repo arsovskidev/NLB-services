@@ -42,9 +42,10 @@ class AccountController extends Controller
         $account->credit_card_number = $request->credit_card_number;
         $account->balance_eur = $request->balance;
 
-        if($account->save()) {
+        if ($account->save()) {
             return redirect()->route('dashboard')->with('success', 'Account successfully created');
-        } return redirect()->route('dashboard')->with('error', 'Whoops an error occured');
+        }
+        return redirect()->route('dashboard')->with('error', 'Whoops an error occured');
     }
 
     /**

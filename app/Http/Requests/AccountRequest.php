@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AccountRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class AccountRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -27,7 +28,7 @@ class AccountRequest extends FormRequest
             'client_id' => 'required',
             'account_number' => 'required',
             'credit_card_number' => 'required',
-            'balance_eur' => 'required'
+            'balance' => 'required'
         ];
     }
 
