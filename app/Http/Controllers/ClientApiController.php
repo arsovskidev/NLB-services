@@ -19,8 +19,10 @@ class ClientApiController extends Controller
     {
         $info = [
             "name" => env('BANK_NAME', false),
-            "image" => env('BANK_IMAGE', false),
-            "desc" => env('BANK_DESC', false)
+            "slug" => env('BANK_SLUG', false),
+            "image" => env('APP_URL', false) . env('BANK_IMAGE', false),
+            "desc" => env('BANK_DESC', false),
+
         ];
 
         return response()->json($info, 200);
@@ -45,14 +47,14 @@ class ClientApiController extends Controller
     public function info(Request $request)
     {
         $token = Token::where("token", "=", $request->token)->first();
-        
-        if($token != null) {
+
+        if ($token != null) {
             $response = [
                 "status" => "success",
                 "client" => [
-                    "name" => $token->client->name, 
-                    "surname"=> $token->client->surname, 
-                    "email" =>  $token->client->email, 
+                    "name" => $token->client->name,
+                    "surname" => $token->client->surname,
+                    "email" =>  $token->client->email,
                     "accounts" => [
                         $token->client->accounts
                     ]
@@ -60,7 +62,8 @@ class ClientApiController extends Controller
             ];
 
             return response()->json($response, 200);
-        } return response()->json(["status" => "error", "message" => "Invalid token"], 401);
+        }
+        return response()->json(["status" => "error", "message" => "Invalid token"], 401);
     }
 
     public function login(Request $request)
@@ -69,12 +72,12 @@ class ClientApiController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        
+
         $credentials = $request->only("email", "password");
         $auth = Auth::guard('client');
-        
-        if($auth instanceof \Illuminate\Contracts\Auth\StatefulGuard){
-            if($auth->attempt($credentials)) {
+
+        if ($auth instanceof \Illuminate\Contracts\Auth\StatefulGuard) {
+            if ($auth->attempt($credentials)) {
                 $token = Str::random(32);
                 Token::create([
                     'client_id' => $auth->user()->id,
@@ -82,13 +85,14 @@ class ClientApiController extends Controller
                     'expires_at' => date('Y-m-d h:i:s', strtotime('+7 day')),
                 ]);
                 return response()->json(["token" => $token], 200);
-            } 
-        } return response()->json(["status" => "error", "message" => "Invalid credentials"], 401);
+            }
+        }
+        return response()->json(["status" => "error", "message" => "Invalid credentials"], 401);
     }
 
-    public function search($name) 
+    public function search($name)
     {
-        $client = Client::where("surname", "like", '%'.$name.'%')->get('id');
+        $client = Client::where("surname", "like", '%' . $name . '%')->get('id');
         return $client;
     }
 
